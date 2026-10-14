@@ -1,0 +1,24 @@
+# 缓存与过程文件
+__pycache__/
+*.pyc
+*.bak
+*.lnk
+*.GAX1
+maca_backup_*/
+pptx_extract/
+
+# 大体积演示素材（走网盘/作品文件包）
+*.pptx
+
+# 原始工程件：不进公开仓库（图纸、计算书原件、MIDAS 模型与求解日志）
+*.dxf
+*.dwg
+*.docx
+*.mgbx
+*.XOUT
+*.xout
+
+# 凭证只走环境变量，绝不入库
+.env
+*.key
+secrets/
