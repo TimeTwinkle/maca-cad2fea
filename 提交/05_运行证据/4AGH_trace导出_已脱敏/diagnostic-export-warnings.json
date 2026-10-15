@@ -1,0 +1,7 @@
+[
+  {
+    "source": "trace",
+    "reason": "truncated",
+    "detail": "仅含已加载的最近 1502 个节点，更早的历史未包含"
+  }
+]

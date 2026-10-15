@@ -1,0 +1,63 @@
+[
+  {
+    "id": "RULE-001",
+    "name": "刚体位移检测",
+    "trigger": "max_abs_disp > 理论值*100",
+    "cause": "结构是机构：(a)XY平面内无≥3点约束, 或 (b)竖向无约束链杆",
+    "attribution": "IMPORT_ERROR",
+    "fix": "XY≥3非共线点固支(锁平面内) + 竖向至少1点固支DZ(锁竖向平移)。内力正常但位移发散=竖向刚体位移未锁。",
+    "severity": "critical",
+    "learned_from": "_duel_v2/v3: 弯矩正常(-1.03kNm)但位移发散(-8e4mm)=竖向欠约束",
+    "status": "confirmed"
+  },
+  {
+    "id": "RULE-002",
+    "name": "弯矩合理性校验",
+    "trigger": "|Mmax| / (q*L^2/8) 应落在 [0.3, 3.0]",
+    "cause": "超出 -> 荷载/截面映射错；远小于 1 -> 荷载没写进去",
+    "attribution": "IMPORT_ERROR",
+    "fix": "核对 /db/BMLD 的 P 数组 4 元素、LCNAME 工况存在、D 方向",
+    "severity": "high",
+    "learned_from": "首轮 Mmax=-0.28 kNm vs qL^2/8 理论值"
+  },
+  {
+    "id": "RULE-003",
+    "name": "单位一致性",
+    "trigger": "单位表 DIST=mm 但节点坐标按 m 写入",
+    "cause": "位移差 1000 倍",
+    "attribution": "IMPORT_ERROR",
+    "fix": "统一 DIST=M，坐标/截面全部米制",
+    "severity": "high",
+    "learned_from": "首轮单位已设 M，坐标正确，排除此项"
+  },
+  {
+    "id": "RULE-004",
+    "name": "CAD 轮廓线误当构件",
+    "trigger": "构件数 >> 真实结构杆数（371 vs ~40）",
+    "cause": "CAD 图层未分层，轮廓/标注/沙袋示意图全混在一起",
+    "attribution": "CAD_ERROR",
+    "fix": "按图层/长度阈值/连接性筛出真实承重杆；或要求制图人分层",
+    "severity": "medium",
+    "learned_from": "cad_model 实测 371 构件但真实车架远少于此"
+  },
+  {
+    "id": "RULE-005",
+    "name": "挠度量级矛盾",
+    "trigger": "L=500mm 车架 1/250 限值=2mm，但计算书 15mm 判合格",
+    "cause": "15mm 对应的 L 尺度未确认（车轮跨距/整车 vs 车架外廓）",
+    "attribution": "CAD_ERROR",
+    "fix": "向设计人核实 L 定义；未核实前 verdict=undetermined",
+    "severity": "open",
+    "learned_from": "Q-SPAN-01"
+  },
+  {
+    "id": "RULE-006",
+    "name": "竖向约束收敛验证",
+    "trigger": "加竖向固支后位移从发散->mm级",
+    "cause": "平面3点固支只锁平面内, DZ竖向平移未锁",
+    "attribution": "IMPORT_ERROR",
+    "fix": "节点1用1111100锁XYZ, 其余用1100000锁XY -> 位移收敛到0.53mm物理量级",
+    "severity": "resolved",
+    "learned_from": "_duel_v3竖向补丁: -8e4mm发散 -> -0.53mm收敛"
+  }
+]

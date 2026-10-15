@@ -1,0 +1,10 @@
+{
+  "blue_team_rules": [
+    {"metric": "deflection", "condition": "<= L/400", "description": "挠度需满足L/400限值"},
+    {"metric": "stress_ratio", "condition": "<= 1.0", "description": "应力比需小于1.0"}
+  ],
+  "red_team_rules": [
+    {"metric": "stress_ratio", "condition": "> 1.0", "description": "应力比超限，结构不安全"},
+    {"metric": "deflection", "condition": "> L/400", "description": "挠度超限，结构刚度不足"}
+  ]
+}

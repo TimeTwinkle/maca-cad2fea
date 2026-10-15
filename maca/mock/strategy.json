@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "project_name": "勒勒车空间桁架AI审查",
+    "version": "0.1-mock",
+    "remark": "此为Mock数据，待用户与队长确认后替换"
+  },
+  "geometry_rules": {
+    "structure_type": "space_truss",
+    "main_beam_section": "20x20mm",
+    "axial_member_section": "φ42",
+    "material_main_beam": "Q235",
+    "material_axial_member": "Q345",
+    "support_condition": "bottom_4_corners_fixed"
+  },
+  "material_rules": {
+    "Q235": {"yield_strength_mpa": 235, "elastic_modulus_gpa": 200},
+    "Q345": {"yield_strength_mpa": 345, "elastic_modulus_gpa": 206}
+  },
+  "load_cases": {
+    "dead_load": 1.0,
+    "sandbag_load": 1.0,
+    "combination": "1.0*Dead + 1.0*Sandbag"
+  },
+  "check_limits": {
+    "deflection_limit_ratio": 400,
+    "stress_ratio_limit": 1.0,
+    "member_length_mm": 1000
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "ts": "2026-10-15T00:48:45",
+  "version": "v7_20261015_0048",
+  "final_status": 200,
+  "note": "{\"error\":{\"message\":\"[错误] 材料 没有定义。\"}}",
+  "steps": [
+    {
+      "step": "start",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "start2",
+      "status": 200,
+      "note": "APISTART 终态确认"
+    },
+    {
+      "step": "clear",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "nodes",
+      "status": 200,
+      "note": "30"
+    },
+    {
+      "step": "sect",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "matl",
+      "status": 200,
+      "note": "E=6000000000Pa"
+    },
+    {
+      "step": "elems",
+      "status": 201,
+      "note": "46"
+    },
+    {
+      "step": "elems_chk",
+      "status": 200,
+      "note": "ELEM 已挂 MATL"
+    },
+    {
+      "step": "matl_chk",
+      "status": 200,
+      "note": "GET 未回显 ELAST (共享会话传播延迟, PUT 已过, 交 ANAL 终验)"
+    },
+    {
+      "step": "cons",
+      "status": 201,
+      "note": "fix [1, 8, 30]"
+    },
+    {
+      "step": "stld",
+      "status": 201,
+      "note": ""
+    },
+    {
+      "step": "comb",
+      "status": 201,
+      "note": ""
+    },
+    {
+      "step": "bodf",
+      "status": 201,
+      "note": ""
+    },
+    {
+      "step": "bmld",
+      "status": 201,
+      "note": ""
+    },
+    {
+      "step": "analyze",
+      "status": 200,
+      "note": "(9.0s) {\"error\":{\"message\":\"[错误] 材料 没有定义。\"}}"
+    }
+  ]
+}

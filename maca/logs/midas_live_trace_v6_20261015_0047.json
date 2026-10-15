@@ -1,0 +1,53 @@
+{
+  "ts": "2026-10-15T00:47:12",
+  "version": "v6_20261015_0047",
+  "final_status": 200,
+  "note": "MATL GET 无有效 ELAST: {\"message\":\"\"}",
+  "steps": [
+    {
+      "step": "start",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "start2",
+      "status": 200,
+      "note": "APISTART 终态确认"
+    },
+    {
+      "step": "clear",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "nodes",
+      "status": 200,
+      "note": "30"
+    },
+    {
+      "step": "sect",
+      "status": 200,
+      "note": ""
+    },
+    {
+      "step": "matl",
+      "status": 200,
+      "note": "E=6000000000Pa"
+    },
+    {
+      "step": "elems",
+      "status": 201,
+      "note": "46"
+    },
+    {
+      "step": "elems_chk",
+      "status": 200,
+      "note": "ELEM 已挂 MATL"
+    },
+    {
+      "step": "matl_chk",
+      "status": 200,
+      "note": "材质未建成: {\"message\":\"\"}"
+    }
+  ]
+}

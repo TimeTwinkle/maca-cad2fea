@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset='utf-8'><title>MACA Full Demo</title><style>body{font-family:Arial,Microsoft YaHei;padding:24px;background:#f5f7fb}h1{font-size:24px}.box{background:#fff;border:1px solid #d8dee8;border-radius:12px;padding:14px;margin:12px 0}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #eee;padding:6px;font-size:13px}pre{background:#111;color:#ddd;padding:12px;max-height:520px;overflow:auto;font-size:12px}</style></head><body><h1>MACA Full Closed-loop Demo</h1><div class='box'>Source: ..\勒勒车2-2.dxf<br>Engine: MIDAS(NX)<br>MIDAS configured: False<br>MIDAS used: False<br>Duration: 0.047s</div><div class='box'><h2>Iteration</h2><table><tr><th>step</th><th>section</th><th>ratio</th><th>deflection_mm</th><th>ok</th><th>suggestion</th></tr><tr><td>1</td><td>250x500</td><td>0.487</td><td>3.728</td><td>True</td><td>当前截面 250x500 满足承载力与服务性要求，无需调整。</td></tr></table><p>Converged: True | 满足承载力与服务性</p></div><div class='box'><h2>JSON</h2><pre>{
+  "source": "..\\勒勒车2-2.dxf",
+  "source_type": "dxf",
+  "duration_s": 0.047,
+  "dxf": {
+    "source": "..\\勒勒车2-2.dxf",
+    "dxf_head_preview": "  0\r\nSECTION\r\n  2\r\nHEADER\r\n  9\r\n$ACADVER\r\n  1\r\nAC1032\r\n  9\r\n$ACADMAINTVER\r\n 90\r\n      378\r\n  9\r\n$DWGCODEPAGE\r\n  3\r\nANSI_936\r\n  9\r\n$LASTSAVEDBY\r\n  1\r\n鏌笇閼\r\n  9\r\n$REQUIREDVERSIONS\r\n160\r\n                 0\r\n  9\r\n$INSBASE\r\n 10\r\n0.0\r\n 20\r\n0.0\r\n 30\r\n0.0\r\n  9\r\n$EXTMIN\r\n 10\r\n-3632.472636273993\r\n 20\r\n-5577.662716302826\r\n 30\r\n-0.9277432401689262\r\n  9\r\n$EXTMAX\r\n 10\r\n2474.105793652082\r\n 20\r\n1165.996614476217\r\n 30\r\n3285.0\r\n  9\r\n$LIMMIN\r\n 10\r\n0.0\r\n 20\r\n0.0\r\n  9\r\n$LIMMAX\r\n 10\r\n420.0\r\n 20\r\n297.0\r\n  9\r\n$ORTHOMOD",
+    "dxf_size_bytes": 303025,
+    "dxf_is_ascii": true,
+    "span_candidates_mm": [
+      1032.0,
+      936.0,
+      3632.472636273993,
+      5577.662716302826,
+      2474.105793652082,
+      1165.996614476217,
+      3285.0,
+      625.0,
+      3937.0,
+      787.0,
+      4016.0,
+      24611.0,
+      25673.0,
+      3020.0,
+      7042.0,
+      8284.0,
+      5238.0,
+      8163.0,
+      8000.0,
+      4095.0
+    ],
+    "section_candidates": [],
+    "load_candidates": [],
+    "material_candidates": [],
+    "warnings": []
+  },
+  "design_params": {
+    "material": "C30",
+    "fc": 14.3,
+    "fy": 300.0,
+    "span": 5577.0,
+    "wll": 20.0,
+    "self_weight": true,
+    "section_b": 250.0,
+    "section_h": 500.0,
+    "as_area": 1256.0,
+    "max_serviceability_span_mm": 20.0,
+    "notes": "DXF fast fingerprint + override params; no full CAD parse",
+    "section_label": "250x500"
+  },
+  "engine": "MIDAS(NX)",
+  "agent_report": {
+    "converged": true,
+    "reason": "满足承载力与服务性",
+    "engine_used": "FormulaEngine",
+    "final": {
+      "stress_ratio": 0.487,
+      "utilization_detail": {
+        "M_design_kNm": 89.907,
+        "Mu_capacity_kNm": 184.632,
+        "q_total_kNm": 23.125
+      },
+      "deflection_mm": 3.728,
+      "max_moment_knm": 89.907,
+      "ok": true,
+      "engine": "FormulaEngine",
+      "log": "理论解：M=89.9kNm, Mu=184.6kNm, 应力比=0.487, δ=3.73mm"
+    },
+    "steps": [
+      {
+        "step": 1,
+        "engine": "FormulaEngine",
+        "section_label": "250x500",
+        "stress_ratio": 0.487,
+        "deflection_mm": 3.728,
+        "ok": true,
+        "suggestion": "当前截面 250x500 满足承载力与服务性要求，无需调整。",
+        "log": "理论解：M=89.9kNm, Mu=184.6kNm, 应力比=0.487, δ=3.73mm"
+      }
+    ]
+  },
+  "dual_check": {
+    "formula": {
+      "stress_ratio": 0.487,
+      "utilization_detail": {
+        "M_design_kNm": 89.907,
+        "Mu_capacity_kNm": 184.632,
+        "q_total_kNm": 23.125
+      },
+      "deflection_mm": 3.728,
+      "max_moment_knm": 89.907,
+      "ok": true,
+      "engine": "FormulaEngine",
+      "log": "理论解：M=89.9kNm, Mu=184.6kNm, 应力比=0.487, δ=3.73mm"
+    },
+    "final_midas_or_engine": {
+      "stress_ratio": 0.487,
+      "utilization_detail": {
+        "M_design_kNm": 89.907,
+        "Mu_capacity_kNm": 184.632,
+        "q_total_kNm": 23.125
+      },
+      "deflection_mm": 3.728,
+      "max_moment_knm": 89.907,
+      "ok": true,
+      "engine": "FormulaEngine",
+      "log": "理论解：M=89.9kNm, Mu=184.6kNm, 应力比=0.487, δ=3.73mm"
+    },
+    "note": "公式解用于现场交叉校验；MIDAS 真值以 final_midas_or_engine 为准。"
+  },
+  "midas_configured": false,
+  "midas_used": false,
+  "html_path": ""
+}</pre></div></body></html>

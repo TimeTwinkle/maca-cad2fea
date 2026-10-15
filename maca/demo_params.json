@@ -1,0 +1,18 @@
+{
+  "source_dxf": "..\\勒勒车2-2.dxf",
+  "engine": "MIDAS(NX)",
+  "max_iters": 6,
+  "param_overrides": {
+    "span_mm": 5577,
+    "section_b": 250,
+    "section_h": 500,
+    "wll_knm": 20,
+    "material": "C30"
+  },
+  "midas": {
+    "env_url": "MIDAS_API_URL",
+    "env_key": "MIDAS_MAPI_KEY",
+    "note": "Do not write keys into repo. Set environment variables in the demo terminal."
+  },
+  "timeline_budget_minutes": 10
+}

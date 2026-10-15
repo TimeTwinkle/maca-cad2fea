@@ -1,0 +1,167 @@
+{
+  "agh": {
+    "version": "0.0.0"
+  },
+  "runtime": {
+    "platform": "win32",
+    "arch": "x64",
+    "osRelease": "10.0.26200",
+    "node": "24.18.1",
+    "pid": 52212,
+    "uptimeMs": 8693346
+  },
+  "profile": {
+    "name": "local-dev",
+    "resolvedProfileHash": "sha256-2943a2db987e65398a786bb85a3ec8bc49967a04e39c44d1323be35726b1a634",
+    "presets": {
+      "default": "standard-windows",
+      "allowed": [
+        "standard-windows"
+      ]
+    },
+    "models": [
+      {
+        "route": "account-acct-5f77236e-9844-4ddd-92aa-1ec194acbe9f",
+        "id": "agnes-3.0-flash",
+        "input": [
+          "text",
+          "image"
+        ],
+        "inputLimits": {
+          "images": {
+            "maxPerRequest": 4
+          }
+        },
+        "reasoning": false,
+        "contextWindow": 200000,
+        "defaultSettings": {}
+      },
+      {
+        "route": "account-acct-b19a7c48-7b4a-4aba-a5a5-e56b5c740fa5",
+        "id": "deepseek-flash",
+        "input": [
+          "text",
+          "image"
+        ],
+        "inputLimits": {
+          "images": {
+            "resize": {
+              "maxWidth": 2000,
+              "maxHeight": 2000,
+              "maxBytes": 4718592,
+              "jpegQuality": 80
+            }
+          }
+        },
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "off": "off",
+          "low": "low",
+          "high": "high",
+          "max": "max"
+        },
+        "contextWindow": 1000000,
+        "defaultSettings": {}
+      },
+      {
+        "route": "account-acct-b19a7c48-7b4a-4aba-a5a5-e56b5c740fa5",
+        "id": "deepseek-v4-pro",
+        "input": [
+          "text"
+        ],
+        "reasoning": true,
+        "thinkingLevelMap": {
+          "low": "low",
+          "high": "high",
+          "max": "max"
+        },
+        "contextWindow": 1000000
+      }
+    ]
+  },
+  "config": {
+    "profile": "local-dev",
+    "revision": 2,
+    "configured": true,
+    "accounts": [
+      {
+        "accountId": "acct-5f77236e-9844-4ddd-92aa-1ec194acbe9f",
+        "label": "U428",
+        "providerId": "agnes-ai",
+        "route": "account-acct-5f77236e-9844-4ddd-92aa-1ec194acbe9f",
+        "baseUrl": "https://api.agnes-ai.cn/v1",
+        "model": "agnes-3.0-flash",
+        "models": [
+          {
+            "id": "agnes-3.0-flash",
+            "name": "Agnes 3.0 Flash",
+            "reasoning": false,
+            "contextWindow": 200000,
+            "defaultSettings": {}
+          }
+        ],
+        "enabled": true,
+        "authType": "api-key",
+        "credentialConfigured": true
+      },
+      {
+        "accountId": "acct-b19a7c48-7b4a-4aba-a5a5-e56b5c740fa5",
+        "label": "kxx",
+        "providerId": "deepseek",
+        "route": "account-acct-b19a7c48-7b4a-4aba-a5a5-e56b5c740fa5",
+        "baseUrl": "https://api.deepseek.com/",
+        "model": "deepseek-flash",
+        "models": [
+          {
+            "id": "deepseek-flash",
+            "name": "DeepSeek V4.1 Flash",
+            "reasoning": true,
+            "thinkingLevelMap": {
+              "off": "off",
+              "low": "low",
+              "high": "high",
+              "max": "max"
+            },
+            "contextWindow": 1000000,
+            "defaultSettings": {}
+          },
+          {
+            "id": "deepseek-v4-pro",
+            "name": "DeepSeek V4 Pro",
+            "reasoning": true,
+            "thinkingLevelMap": {
+              "low": "low",
+              "high": "high",
+              "max": "max"
+            },
+            "contextWindow": 1000000
+          }
+        ],
+        "enabled": true,
+        "authType": "api-key",
+        "credentialConfigured": true
+      }
+    ],
+    "defaultAccountId": "acct-5f77236e-9844-4ddd-92aa-1ec194acbe9f",
+    "effect": "new-sessions",
+    "provider": {
+      "id": "agnes-ai",
+      "route": "account-acct-5f77236e-9844-4ddd-92aa-1ec194acbe9f",
+      "baseUrl": "https://api.agnes-ai.cn/v1",
+      "model": "agnes-3.0-flash",
+      "credentialConfigured": true
+    }
+  },
+  "browser": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 QuarkPC/7.0.2.926",
+    "language": "zh-CN",
+    "platform": "Win32",
+    "timeZone": "Asia/Shanghai",
+    "screen": {
+      "width": 1194,
+      "height": 746,
+      "dpr": 1.9304999113082886
+    },
+    "origin": "http://127.0.0.1:4177"
+  }
+}

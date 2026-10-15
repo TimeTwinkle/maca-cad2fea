@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "project_name": "勒勒车空间桁架（MIDAS Gen NX 复刻 + 红蓝对抗）",
+    "version": "0.3-final",
+    "source": "蒸馏自真实材料：勒勒车计算书.docx(表格3=165节点真实位移) + 汇报PPT(slide11-13) + 勒勒车2-2.dxf",
+    "note": "全部数值来自上述真实文件，非占位。M1 已定稿：32.22mm 为 MIDAS 真值，正文 15mm 判定为数值错误（L 口径未对齐）。"
+  },
+
+  "geometry_rules": {
+    "structure_type": "space_truss(竹木车架, 沙袋错位堆叠)",
+    "node_count_report": 208,
+    "node_count_source": "PPT slide11",
+    "main_beam_section_no": 1,
+    "section_role_1": "梁",
+    "axial_member_section_no": 2,
+    "section_role_2": "轴",
+    "material": "竹材(竹木复合, 非钢)",
+    "elastic_modulus_gpa": 6,
+    "elastic_modulus_note": "PPT slide11 原文：材料竹材(弹性模量6GPa)。计算书表格未列 E，以 PPT 为准。",
+    "support_condition": "一般支承(计算书3.3.6 图表20)",
+    "support_note": "计算书只写'一般支承'，未给约束点清单。MIDAS 需人工补约束；RULE-006 实测：平面3点固支不锁竖向→位移发散，须加竖向。"
+  },
+
+  "load_cases": {
+    "report_combos": {
+      "strength": "1.2×恒载 + 1.4×活载 (PPT slide12 强度验算)",
+      "deflection": "1.0×恒载 + 1.0×活载 (PPT slide12 变形验算)"
+    },
+    "live_load_types": ["行驶冲击", "弯道离心力"],
+    "dead_load": "结构自重(软件自动) + 布袋重量(20~40个, 单个10~20kg)",
+    "report_case": "一级加载",
+    "report_combo_note": "计算书表格2 只写'相加/激活'，未填系数；PPT 给了 1.2/1.4 与 1.0/1.0 两套。"
+  },
+
+  "check_limits": {
+    "deflection": {
+      "main_beam": "L/400",
+      "secondary_beam": "L/250",
+      "cantilever": "L/200",
+      "source": "计算书 表格1 构件受弯挠度控制"
+    },
+    "stress_ratio_limit": 1.0,
+    "report_claims": {
+      "max_vertical_disp_mm": 15,
+      "disp_ratio": "1/600",
+      "disp_ratio_limit": "1/250",
+      "verdict_in_report": "满足要求 (PPT slide13 + 计算书3.4.1)",
+      "MACA_adjudication": "正文 15mm 判定为数值错误：32.22mm(MIDAS表格3真值) 才是实测最大竖向位移。15 对应 1/600 需 L=9000mm、1/250 需 L=3750mm，均远超 500mm 车架外廓——L 口径写错。MACA 不予合格结论，提示正文需修正数值或注明 L 口径。"
+    }
+  },
+
+  "real_fea_table": {
+    "source": "计算书 表格3 (165节点, 一级加载工况, MIDAS 真实位移)",
+    "rows": 165,
+    "max_abs_dz_mm": 32.22,
+    "max_abs_dz_node": 115,
+    "max_combined_disp_mm": 32.26,
+    "dz_min_mm": -11.81,
+    "dz_max_mm": 32.22,
+    "dz_mean_mm": 6.71,
+    "note": "实测表格里最大竖向位移 32.22mm，远高于正文声称的 15mm。"
+  },
+
+  "open_discrepancies": [
+    {
+      "id": "M1",
+      "topic": "最大位移口径矛盾",
+      "claim": "计算书3.4.1 + PPT slide13 都写最大15mm/1/600<1/250 合格",
+      "evidence": "计算书表格3(同文档真实位移) 节点115 DZ=32.22mm, 合成32.26mm",
+      "gap": "2.148 倍 (32.224528/15)",
+      "gap_ratio": 2.1483,
+      "gap_num_source": "32.224528(real_fea_table_165.json max_abs_dz_mm, node115) / 15mm(strategy.json check_limits.report_claims.max_vertical_disp_mm)",
+      "implication": "若按 32.22mm 验算: 32.22 对应 1/250 需 L=8055mm, 1/600 需 L=19332mm, 均非车架尺度",
+      "MACA_decision": "32.22mm 为准（MIDAS 表格3 原始输出，物理量级自洽）；正文 15mm 为数值错误，L 口径未对齐整车/车架尺度",
+      "status": "adjudicated",
+      "action": "MACA 自动检出此矛盾, 报告标 red flag, 不替用户下'合格'结论"
+    },
+    {
+      "id": "M2",
+      "topic": "材料口径缺 E",
+      "claim": "计算书表格1只给截面号(1梁/2轴), 未给材料",
+      "evidence": "PPT slide11 给 竹材 E=6GPa",
+      "gap": "计算书正文与表格缺 E, 只能依 PPT",
+      "status": "open"
+    },
+    {
+      "id": "M3",
+      "topic": "荷载系数未填",
+      "claim": "计算书表格2 组合只写'相加/激活'无系数",
+      "evidence": "PPT slide12 给 1.2/1.4 与 1.0/1.0 两套",
+      "status": "open"
+    },
+    {
+      "id": "M4",
+      "topic": "MIDAS 云侧 USER 材质不被 FEA 引擎识别",
+      "claim": "PUT /db/MATL 返回 200，GET /db/MATL 有时回完整材质体（ELAST=6e9），但 /doc/ANAL 仍报'[错误] 材料 没有定义'",
+      "evidence": "rn27ab_ZTA key 实测：12 步建模全 200/201，analyze 200 但 body 含 error；共享云会话 GET 传播延迟（刚 PUT 完立刻 GET 读空），需 sleep+重读",
+      "root_cause": "MIDAS 云侧 USER+PARAM 材质建法不被 FEA 引擎真正识别，可能需补 PARAM.P_NAME 或改用 STANDARD 材质表；非 MACA 建模逻辑 bug",
+      "impact": "② MIDAS 实时态 FEA 无法当场出真值，MACA 诚实降级到快照态（32.22mm 表格3可溯源真值）；若 MIDAS 侧修复材质表，实时态可无缝切换（代码零改）",
+      "status": "open",
+      "action": "给 MIDAS 运维/队长说明：材质建法卡点 + 全模型 .mgbx/.XOUT 解奇异（265条ABNORMAL），哪条不是代码的锅"
+    }
+  ]
+}

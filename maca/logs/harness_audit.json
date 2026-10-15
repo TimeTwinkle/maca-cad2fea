@@ -1,0 +1,102 @@
+{
+  "run_id": "agh-1792001688",
+  "source": "D:\\AIToolboxConsole\\新建文件夹\\勒勒车2-2.dxf",
+  "source_type": "dxf",
+  "engine_requested": "MIDAS(NX)",
+  "engine_used": "表格3快照",
+  "midas_configured": true,
+  "midas_used": false,
+  "converged": true,
+  "final": {
+    "verdict": "divergent",
+    "red_max_disp_mm": 32.224528,
+    "m1_preserved": true,
+    "criteria_pass": true
+  },
+  "total_s": 0.04,
+  "stages": {
+    "cad_parse_s": 0.04,
+    "model_build_s": 0.0,
+    "analyze_s": 0.0,
+    "table_s": 0.003,
+    "compare_s": 0.002,
+    "degraded": true
+  },
+  "step1_plan": {
+    "run_id": "agh-1792001688",
+    "source_cad": "D:\\AIToolboxConsole\\新建文件夹\\勒勒车2-2.dxf",
+    "stages": [
+      {
+        "i": 1,
+        "stage": "cad_parse",
+        "depends_on": [],
+        "note": "DXF 实体解析 + 连通分量筛选（不筛就机构发散）"
+      },
+      {
+        "i": 2,
+        "stage": "model_build",
+        "depends_on": [
+          1
+        ],
+        "note": "MIDAS MAPI 一键建模（节点/截面/材质/约束/工况/荷载全走 API）"
+      },
+      {
+        "i": 3,
+        "stage": "analyze",
+        "depends_on": [
+          2
+        ],
+        "note": "/doc/ANAL 真 FEA（降级路径：MIDAS 离线→表格3快照）"
+      },
+      {
+        "i": 4,
+        "stage": "table",
+        "depends_on": [
+          3
+        ],
+        "note": "/post/TABLE 取位移/弯矩（降级路径：165行JSON）"
+      },
+      {
+        "i": 5,
+        "stage": "compare",
+        "depends_on": [
+          4
+        ],
+        "note": "蓝军闭式解比对 + M1/M2/M3 矛盾检出"
+      }
+    ],
+    "budget_s": 600.0,
+    "notes": [
+      "降级路径：stage3/4 可走 MIDAS 实时 或 表格3快照（诚实降级，不伪造实时值）",
+      "预算：全链路 600s（评审 C 条），降级态不计全链路成绩",
+      "M1 矛盾保留：正文 15mm vs 表格 32.22mm 缺口 2.148 倍，critical"
+    ]
+  },
+  "step2_call": {
+    "run_id": "agh-1792001688",
+    "red_source": "表格3快照",
+    "red_available": true,
+    "red_max_disp_mm": 32.224528,
+    "red_max_moment_knm": null,
+    "verdict": "divergent",
+    "midas_used": false,
+    "calc_report_path": "D:\\AIToolboxConsole\\新建文件夹\\maca\\logs\\calc_report_v10_20261015_0214.md",
+    "duel_report_path": "D:\\AIToolboxConsole\\新建文件夹\\maca\\logs\\duel_report_v12_快照_20261015_0214.json",
+    "degraded": true,
+    "t_wall_s": 0.04
+  },
+  "step3_verify": {
+    "criteria_pass": true,
+    "criteria_detail": [
+      "PASS 1 red.available+red_source合法",
+      "PASS 2 verdict∈{consistent,divergent}",
+      "PASS 3 分段计时5段齐全",
+      "PASS 3b 全链路预算(仅实时态计wall;降级态证DEGRADED标记)",
+      "PASS 3c 降级态标 DEGRADED",
+      "PASS 4 M1矛盾(32.22vs15,缺口2.148,数字字段+独立重算)保留"
+    ],
+    "m1_preserved": true,
+    "verdict": "divergent"
+  },
+  "audit_path": ""
+}

@@ -22,3 +22,13 @@ pptx_extract/
 .env
 *.key
 secrets/
+
+# Python / 编辑器 / 系统杂项
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.zip
+*.tmp

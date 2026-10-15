@@ -1,0 +1,57 @@
+{
+  "source_cad": "D:\\AIToolboxConsole\\新建文件夹\\勒勒车2-2.dxf",
+  "red": {
+    "available": true,
+    "red_source": "表格3快照",
+    "nodes": 30,
+    "elems": 46,
+    "anchors": [
+      1,
+      8,
+      30
+    ],
+    "max_disp_mm": 32.224528,
+    "max_moment_knm": 0.0,
+    "converged": true,
+    "analyze_s": 0.0,
+    "material_note": "strategy.json geometry_rules.elastic_modulus_gpa (M2 open, 依 PPT slide11)",
+    "snapshot_ref": "real_fea_table_165.json rows[逐行 XML 解析, 非 OCR; 共 165 数据行, 节点号 1..208（中间号缺失=该工况未列）] |DZ|max=32.224528mm@node115（逐行可追溯）",
+    "error": "MIDAS APISTART 非 200/201（会话未建），降级表格3快照；不报实时值"
+  },
+  "blue": {
+    "L_m": 0.13,
+    "I_m4": 1.3333333333333335e-08,
+    "E_pa": 6000000000.0,
+    "q_n_per_m": 1000.0,
+    "delta_mm": 0.04648600260416667,
+    "max_moment_knm": 0.0021125000000000002,
+    "source_note": "跨度:CAD 实测主梁 130.0mm | 截面:PLACEHOLDER 20×20mm（CLI 未配截面，兜底） | E:6.0GPa(strategy.json geometry_rules.elastic_modulus_gpa (M2 open, 依 PPT slide11)) | 荷载:PLACEHOLDER udl=-1（未配荷载，取 1.0 kN/m 兜底）"
+  },
+  "hits": [
+    {
+      "id": "RULE-006",
+      "name": "竖向约束收敛验证",
+      "trigger": "加竖向固支后位移从发散->mm级",
+      "cause": "平面3点固支只锁平面内, DZ竖向平移未锁",
+      "attribution": "IMPORT_ERROR",
+      "fix": "节点1用1111100锁XYZ, 其余用1100000锁XY -> 位移收敛到0.53mm物理量级",
+      "severity": "resolved",
+      "learned_from": "_duel_v3竖向补丁: -8e4mm发散 -> -0.53mm收敛",
+      "fired": true
+    }
+  ],
+  "summary": {
+    "verdict": "divergent",
+    "basis": "快照态位移量级 + M1 矛盾（32.22 vs 15mm）",
+    "note": "快照无弯矩表，判据退化为位移量级；M1 矛盾保留 → 不下合格结论"
+  },
+  "timings": {
+    "cad_parse_s": 0.02,
+    "model_build_s": 0.0,
+    "analyze_s": 0.0,
+    "table_s": 23.116,
+    "compare_s": 0.001,
+    "degraded": true
+  },
+  "t_wall_s": 23.14
+}

@@ -1,0 +1,118 @@
+{
+  "source_dxf": "..\\勒勒车2-2.dxf",
+  "source_type": "dxf",
+  "total_s": 0.0751,
+  "budget_s": 600.0,
+  "budget_ok": true,
+  "cad_stats": {
+    "entities": 891,
+    "line": 295,
+    "lwpolyline": 27,
+    "nodes": 263,
+    "members": 371,
+    "texts": 18,
+    "dims": 15
+  },
+  "structure_stats": {
+    "nodes": 263,
+    "members": 371,
+    "axis_candidates": 20,
+    "span_source": "axis_grid",
+    "longest_axis_mm": 768.8,
+    "spans_mm": [
+      768.8,
+      736.2,
+      500.0
+    ],
+    "members_raw": 371
+  },
+  "midas_configured": false,
+  "midas_used": false,
+  "analysis": {
+    "engine": "MIDAS(NX)",
+    "configured": false,
+    "used_midas": false,
+    "span_used_mm": 768.8,
+    "span_source": "axis_grid",
+    "span_trustworthy": true,
+    "members_modeled": 371,
+    "nodes_modeled": 263,
+    "stress_ratio": NaN,
+    "deflection_mm": NaN,
+    "max_moment_knm": 0.0,
+    "ok": false,
+    "log": "MIDAS 未接入：未设 MIDAS_API_URL / MIDAS_MAPI_KEY（官方 MAPI RESTful）",
+    "has_truth": false,
+    "elapsed_s": 0.0
+  },
+  "audit": {
+    "limit_secondary_mm": 3.075,
+    "limit_main_mm": 1.922,
+    "governing_combo": "自重+使用荷载标准组合",
+    "reference_result": {
+      "max_relative_displacement_mm": 15.0,
+      "displacement_ratio": "1/600",
+      "limit_ratio": "1/250",
+      "verdict": "满足要求",
+      "combo": "自重+使用荷载标准组合",
+      "note": "PPT slide 19：结构最大相对位移仅 15mm，位移比 1/600，远优于 1/250 要求"
+    },
+    "findings": [],
+    "unresolved": [
+      "[Q-SPAN-01] 挠度限值所属跨度 L 的尺度：计算书/PPT 的 15mm 位移与 1/600 位移比，无法用车架外廓 500mm 解释（500/250=2.0mm）（待核实）",
+      "挠度值不可用（NaN）：求解引擎未产出真值，不能判定合格",
+      "应力比不可用（NaN）：求解引擎未产出真值，不能判定合格"
+    ],
+    "verdict": "undetermined",
+    "pass": false,
+    "elapsed_s": 0.0
+  },
+  "iteration": {
+    "control_factor": "none",
+    "trajectory": [],
+    "iterations_used": 0,
+    "max_iters": 6,
+    "elapsed_s": 0.0
+  },
+  "ledger_summary": {
+    "CAD": {
+      "total": 30,
+      "done": 30,
+      "failed": 0,
+      "skipped": 0
+    },
+    "MODEL": {
+      "total": 20,
+      "done": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "MIDAS": {
+      "total": 30,
+      "done": 0,
+      "failed": 1,
+      "skipped": 29
+    },
+    "AUDIT": {
+      "total": 15,
+      "done": 3,
+      "failed": 12,
+      "skipped": 0
+    },
+    "OPT": {
+      "total": 20,
+      "done": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "REPORT": {
+      "total": 15,
+      "done": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "html_path": "D:\\AIToolboxConsole\\新建文件夹\\maca\\logs\\engineering_report.html",
+  "json_path": "",
+  "ledger_path": "D:\\AIToolboxConsole\\新建文件夹\\maca\\logs\\harness_ledger.json"
+}

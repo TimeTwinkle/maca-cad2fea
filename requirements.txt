@@ -1,0 +1,17 @@
+# MACA 依赖说明
+#
+# 三条验收命令（python run_agh_gate.py / verify_criteria.py / calc_report.py）
+# 以及 tests/test_maca.py 仅使用 Python 3.10+ 标准库，不装任何第三方包即可跑通
+# （此时为快照态，显式标记 degraded=true）。
+#
+# 下列均为可选能力，按需安装：
+
+# MIDAS MAPI 实时态 / Agnes 大模型通道（代码内惰性导入；未配置时自动降级到规则/快照）
+requests
+
+# Streamlit 演示界面（maca/ui/）
+streamlit
+plotly
+
+# 开源 FEA 引擎；未安装时 PyNite 适配器自动回退理论解，闭环仍可跑通
+PyniteFEA
