@@ -1,9 +1,22 @@
+# 校验值清单（SHA256，仅覆盖随包文件）
+
+> 生成时间：2026-10-15 · 算法 SHA256 · 校验：`Get-FileHash <文件> -Algorithm SHA256`（PowerShell）
+> 本清单**只列包内存在的文件**，逐条可当场校验通过。
+
+## 一、交付文档（本目录所在层及邻近目录）
+
+```
 8b0a0e94a0f5a12989411bed6f8e1721e4d0d449fa6fbfcaa061572e910a8d60  ACCEPTANCE.md
 c489a2f09b82ee67debc29bd230145031b1b168585743e98aafacb3f936e95c2  AGH_claim_evidence_review_layer.md
 9e54e3a8f006fd4308f99ef06887a35aba0d7a26b3aec098ae431cb014b02372  DELIVERY.md
 6c8c3001ff88619f0079ce48016919db1a40dc16947df3dddc5a91bfcf6c6308  MIDAS_API_接入手册.md
 d939cd9a991602e2d2389153f8754a040e9de9fe6eb68a056d17965689b4db98  README.md
 527539f9117c1462b37efb07d5b68a917936f888c13064dff1d4fbb833a0973b  VERIFICATION_MEMO.md
+```
+
+## 二、运行产物与配置（复制自 `maca/logs/`）
+
+```
 af67433fb2bf1e1baf4b14cb96e603a6703a65e0186af9853dab9ff828f45bf5  calc_report_latest.md
 4036c66c5dcd58e542c639d30e21f92c883e1ea858c3d9d953fbd84cd283a5ae  duel_report_latest.json
 05b7a2bb97f22ef8347e1c0b40eb55f92c0bca85d5cb41b7def08fa8ef0aac96  duel_rules.json
@@ -11,5 +24,19 @@ af67433fb2bf1e1baf4b14cb96e603a6703a65e0186af9853dab9ff828f45bf5  calc_report_la
 90676c34bd06ef29fdf46b0e25aba84d24f80ea618893d932a5eb4b26bf324ea  midas_live_trace_latest.json
 7b6f63856f26da30ba96a004719f79b77b58ff204a378ea0cfbff2d78d4b78d6  real_fea_table_165.json
 ced554031b1fc908dd6dcddfd36da2294b040d842db72e5ea2711c74f551108b  strategy.json
-1e640b5b079b2e8ac2b50fd5f7e3ee905c9cb5592c1aa64fe1d08b19fc49453a  无标题_全模型求解日志.XOUT
-f78fb79f76f11c17a912fb8066a76730f2bed18f99f0b5570effdabf806d26ba  ../../勒勒车计算书.docx :: word/document.xml
+```
+
+## 三、设备侧专业验证证据（包内 `../3专业验证/`）
+
+```
+1e640b5b079b2e8ac2b50fd5f7e3ee905c9cb5592c1aa64fe1d08b19fc49453a  ../3专业验证/无标题_全模型求解日志.XOUT
+7b6f63856f26da30ba96a004719f79b77b58ff204a378ea0cfbff2d78d4b78d6  ../3专业验证/real_fea_table_165.json
+```
+- 第一行即"234 个自由度 `MAY BE SINGULAR` + 265 条位移 `ABNORMAL`"的那份 MIDAS 原生求解日志，评审可当场 `findstr` 复算。
+
+## 四、包外溯源锚点（原件随作品 ZIP 根目录提交，此处只登记锚点）
+
+```
+f78fb79f76f11c17a912fb8066a76730f2bed18f99f0b5570effdabf806d26ba  勒勒车计算书.docx :: word/document.xml
+```
+- 取法：解压 docx 后对 `word/document.xml` 求 sha256。`real_fea_table_165.json` 的 165 行位移即由该 XML 逐行解析而来（非 OCR），可独立复算。

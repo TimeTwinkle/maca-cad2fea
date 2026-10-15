@@ -102,7 +102,7 @@
 | **诊断包告警不全** | `logs/daemon.jsonl` 0 字节（恰是定位 MCP 拉起失败最需要的日志）；warnings 只报了 trace 截断 [引自账本] | **空/缺失日志进 warnings**；trace 截断时**至少保留全部 compaction 纪要 + 每轮摘要**，不要只留 trace 头尾 |
 
 ### 本会话对 P0-2 的第一手佐证 [本会话已复核]
-- 本会话 turn prefix（system 注入的工作纪要）**明文携带完整 MIDAS JWT**（`<REDACTED_MAPI_KEY>...`，client `rn27ab_ZTA`）。
+- 本会话 turn prefix（system 注入的工作纪要）**明文携带完整 MIDAS JWT**（`eyJ1ciI6IlRpbWUyMCI...`，client `rn27ab_ZTA`）。
 - 该 JWT 是 20min 窗口的活凭证；它出现在 compaction 纪要里 = 一次**脱敏漏网**的活例。
 - 建议 P0-2 的诊断包凭证扫描，**至少把 "JWT 形态（两段点分 + base64 头解出含 `pg:gen`/`cn:*`）"加进扫描签名**。
 

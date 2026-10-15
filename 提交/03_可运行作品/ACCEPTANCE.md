@@ -99,8 +99,8 @@ MACA 项目应"把设计人关于 MidasGen 的判断与经验蒸馏为机器可�
 
 ## 3. 已知边界（不藏，评审看到就知道哪条是卡点）
 
-- MIDAS 实时态：MIDAS 云侧材质表对竹材 6GPa 的识别情况决定红方能否取实时值。代码有诚信防线：取不到真值就降级、不伪造；报告 degraded=true 显式标记，弯矩写 null 不写 NaN。
-- verdict=divergent 的语义（P1-7）：30 节点子模型 vs 208 全模型跨口径不可比，故 divergent 是"口径不可比"的必然产物，不作为结构缺陷证据；真正检出的缺陷是 M1（32.22 vs 15mm，缺口 2.148，已裁决 32.22mm 为准）。要直接复现 32.22mm 需全模型 .mgbx 源（未提供）。
+- MIDAS 实时态：卡点在我方材质载荷——`/db/MATL` PUT 回 200，但最终 `/doc/ANAL` 回 `[错误] 材料 没有定义。`。两个候选变量待对照实验分辨：① 写入 `ELAST=6e9` 在本单位制（`FORCE:KN / DIST:M`，即 kPa）下等于 6000 GPa，超出可接受范围；② 材质名含括号/逗号（`bamboo(E=6GPa,M2open)`），而同实例历史成功并可读回的自定义 USER 材质名为 `Q355`、`ELAST=206000000`（=206 GPa）。**不是"云侧不认自定义材质"，是我方材质载荷问题**。代码有诚信防线：取不到真值就降级、不伪造；报告 degraded=true 显式标记，弯矩写 null 不写 NaN。
+- verdict=divergent 的语义（P1-7）：30 节点子模型 vs 208 全模型跨口径不可比，故 divergent 是"口径不可比"的必然产物，不作为结构缺陷证据；真正检出的缺陷是 M1（32.22 vs 15mm，缺口 2.148，已裁决 32.22mm 为准）。全模型 `.mgbx` 源**已随作品文件包提交（14 个 `.mgbx` + 对应 `.XOUT`）**，但其 MIDAS 原生解本身奇异（265 条位移 `ABNORMAL` + 234 个自由度 `MAY BE SINGULAR`），且无任何 `.XOUT` 出现 32.22，故 32.22mm 只能取源计算书表格3（`勒勒车计算书.docx` 亦随包，可独立复算 sha256）。
 - M2/M3 未定稿：材料 E、荷载系数依 PPT，标 open 待队长确认。
 - MCP 入口修复（2026-10-15）：`duel_run.py` 给 `red_run`/`blue_closed_form` 加了 `strategy`/`e_gpa` 形参后，`maca_mcp.py` 两处调用点曾未跟上（`run_full_pipeline` 走 MCP 入口会 `TypeError: red_run() missing 1 required positional argument: 'strategy'`）。已修（补传 `strat`，`blue_closed_form` 补 `e_gpa` 口径，与 `duel_run.py` 主路径同口径：`udl<=0` 时兜底 1.0 kN/m、E 读 strategy.json）。**注意：此修复不在三条验收命令路径上（它们走 duel_run.py 直跑），但若交付的 maca_mcp.py 不是 2026-10-15 修复版，评审走 MCP 入口会撞同一 TypeError——以本文件交付时间戳为准核对。**
 
